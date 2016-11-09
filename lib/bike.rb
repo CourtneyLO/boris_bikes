@@ -4,4 +4,8 @@ class Bike
     true
   end
 
+  def bike_available?
+    true
+  end
+
 end
