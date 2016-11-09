@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Boris Bikes
 
 We are going to create a new Boris bike program which will be a network of docking stations and bikes that anyone can use.
@@ -130,3 +131,6 @@ I want to dock my bike at the docking station
 As a member of the public
 So I can decide whether to use the docking station
 I want to see a bike that has been docked
+=======
+# boris_bikes
+>>>>>>> 24070824de4fee5da7a3e7f7c6d7c20a308a699b

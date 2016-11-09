@@ -1,7 +1,7 @@
 class Bike
 
   def working?
-    "bike is working"
+    true
   end
 
 end
