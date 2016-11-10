@@ -3,10 +3,10 @@ require 'docking_station.rb'
 require 'bike.rb'
 
 describe DockingStation do
-  it {is_expected.to respond_to :release_bike}
   it "shows if bike is working" do
-    bike = subject.release_bike
-    expect(bike).to be_working
+    bike = Bike.new
+    subject.dock_bike(bike)
+    expect(subject.release_bike).to be_working
   end
   it 'tests for repsonse to "return_bike" method' do
     expect(subject).to respond_to :dock_bike
@@ -17,13 +17,17 @@ describe DockingStation do
   it 'tests for respsonse calling station.bike' do
     expect(subject).to respond_to :bike
   end
-  it 'tests for bike dock_bike(bike) and station(class) method "bike" to return bike instance variable' do
+  it 'tests to see if bike has been docked' do
     bike = Bike.new
-    expect(subject.dock_bike(bike)).to eq bike
-    expect(subject.bike).to eq bike
+    expect(subject.dock_bike(bike)).to eq true
   end
   it 'raises error when trying to release bikes when none are available' do
     expect {subject.release_bike}.to raise_error("No bikes available")
   end
-
+  it 'raises error when capacity is full' do
+    bike = Bike.new
+    subject.dock_bike(bike)
+    bike = Bike.new
+    expect {subject.dock_bike(bike)}.to raise_error("Capacity is full")
+  end
 end

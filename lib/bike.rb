@@ -5,3 +5,7 @@ class Bike
   end
 
 end
+
+  def tyres?
+    true
+  end 
