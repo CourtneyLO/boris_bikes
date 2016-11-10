@@ -25,8 +25,7 @@ describe DockingStation do
     expect {subject.release_bike}.to raise_error("No bikes available")
   end
   it 'raises error when capacity is full' do
-    bike = Bike.new
-    subject.dock_bike(bike)
+    20.times {subject.dock_bike Bike.new}
     bike = Bike.new
     expect {subject.dock_bike(bike)}.to raise_error("Capacity is full")
   end
