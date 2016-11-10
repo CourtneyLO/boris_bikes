@@ -29,4 +29,5 @@ describe DockingStation do
     bike = Bike.new
     expect {subject.dock_bike(bike)}.to raise_error("Capacity is full")
   end
+  
 end
