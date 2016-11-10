@@ -38,4 +38,17 @@ describe DockingStation do
     end
   end
 
+  context 'Set capacity' do
+
+    it 'Allows capacity to be set' do
+      station = DockingStation.new(100)
+    expect(station.capacity).to eq 100
+  end
+
+  it 'sets default capacity when no parameters passed to docking station' do
+    station = DockingStation.new
+    expect(station.capacity).to eq 20
+  end
+end
+
 end
