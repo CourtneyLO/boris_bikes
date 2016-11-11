@@ -7,14 +7,14 @@ describe DockingStation do
   context "Dock and release tests" do
 
     it "shows if bike is working" do
-      bike = Bike.new
+      bike = double(:bike)
       subject.dock_bike(bike)
       expect(subject.release_bike).to be_working
     end
     it 'only releases bike if bike is working' do
-      bike = Bike.new
+      bike = double(:bike)
       subject.dock_bike(bike)
-      bike1 = Bike.new(false)
+      bike1 = double(:bike, :condition => false)
       subject.dock_bike(bike1)
       expect(subject.release_bike).to eq bike
     end
@@ -28,7 +28,7 @@ describe DockingStation do
       expect(subject).to respond_to :bikes
     end
     it 'tests to see if bike has been docked' do
-      bike = Bike.new
+      bike = double(:bike)
       expect(subject.dock_bike(bike)).to eq [bike]
     end
 
@@ -41,8 +41,8 @@ describe DockingStation do
       expect {subject.release_bike}.to raise_error("No bikes available")
     end
     it 'raises error when capacity is full' do
-      DockingStation::DEFAULT_CAPACITY.times {subject.dock_bike Bike.new}
-      bike = Bike.new
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock_bike double(:bike)}
+      bike = double(:bike)
       expect {subject.dock_bike(bike)}.to raise_error("Capacity is full")
     end
   end
