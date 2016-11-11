@@ -11,6 +11,8 @@ describe DockingStation do
       subject.dock_bike(bike)
       expect(subject.release_bike).to be_working
     end
+
+
     it 'tests for repsonse to "return_bike" method' do
       expect(subject).to respond_to :dock_bike
     end
@@ -24,6 +26,8 @@ describe DockingStation do
       bike = Bike.new
       expect(subject.dock_bike(bike)).to eq true
     end
+
+
   end
 
   context "Raise error tests" do
