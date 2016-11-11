@@ -5,14 +5,16 @@ require 'bike.rb'
 describe DockingStation do
 
   context "Dock and release tests" do
+    let (:bike) { double :bike }
 
     it "shows if bike is working" do
-      bike = double(:bike)
+      allow(bike).to receive(:working?).and_return(true)
+      allow(bike).to receive(:condition).and_return(true)
       subject.dock_bike(bike)
       expect(subject.release_bike).to be_working
     end
     it 'only releases bike if bike is working' do
-      bike = double(:bike)
+      bike = double(:bike, :condition => true)
       subject.dock_bike(bike)
       bike1 = double(:bike, :condition => false)
       subject.dock_bike(bike1)
