@@ -11,8 +11,13 @@ describe DockingStation do
       subject.dock_bike(bike)
       expect(subject.release_bike).to be_working
     end
-
-
+    it 'only releases bike if bike is working' do
+      bike = Bike.new
+      subject.dock_bike(bike)
+      bike1 = Bike.new(false)
+      subject.dock_bike(bike1)
+      expect(subject.release_bike).to eq bike
+    end
     it 'tests for repsonse to "return_bike" method' do
       expect(subject).to respond_to :dock_bike
     end
@@ -20,11 +25,11 @@ describe DockingStation do
       expect(subject).to respond_to(:dock_bike).with(1).argument
     end
     it 'tests for respsonse calling station.bike' do
-      expect(subject).to respond_to :bike
+      expect(subject).to respond_to :bikes
     end
     it 'tests to see if bike has been docked' do
       bike = Bike.new
-      expect(subject.dock_bike(bike)).to eq true
+      expect(subject.dock_bike(bike)).to eq [bike]
     end
 
 
