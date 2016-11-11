@@ -1,42 +1,36 @@
-require './lib/bike.rb'
+require_relative 'bike'
 
 class DockingStation
-  attr_reader :docked_bikes, :capacity
+
+  attr_reader :bike
+  attr_reader :capacity
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity = DEFAULT_CAPACITY)
-    @docked_bikes = []
-    @capacity = capacity
+  def initialize(capacity = 20)
+     @bikes = []
+     @capacity = capacity
   end
 
   def release_bike
-    if empty?
-      raise "There are no more bikes!"
-    elsif
-      index = @docked_bikes.index {|bike| bike.condition == true }
-      return @docked_bikes.slice!(index) if index != nil
-    else
-      raise "There are no working bikes!"
-    end
+    raise "No bikes available" if empty?
+    @bikes.pop
   end
 
-  def dock(new_bike)
-    raise "The docking station is full!" if full?
-    @docked_bikes << new_bike
-  end
-
-  def any_bikes_docked?
-    @docked_bikes.any?
+  def dock_bike(bike)
+    raise "Capacity is full" if full?
+    @bikes << bike
+    @bikes.any?
   end
 
   private
-    def full?
-      @docked_bikes.count >= DEFAULT_CAPACITY
-    end
 
-    def empty?
-      @docked_bikes.empty?
-    end
+  def empty?
+    @bikes.empty?
+  end
+
+  def full?
+    @bikes.count  >= DEFAULT_CAPACITY
+  end
 
 end
