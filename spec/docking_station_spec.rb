@@ -60,4 +60,20 @@ describe DockingStation do
     expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 end
+
+  context 'collect broken bikes' do
+
+    it "responds to a method called get broken bikes" do
+      expect(subject).to respond_to (:get_broken_bikes)
+    end
+
+    it "get broken bikes will retrieve all the bikes that are broken" do
+      bike = double(:bike, :condition => true)
+      subject.dock_bike(bike)
+      bike1 = double(:bike, :condition => false)
+      subject.dock_bike(bike1)
+      expect(subject.get_broken_bikes).to eq bike1
+    end
+
+  end
 end
