@@ -1,6 +1,5 @@
 
 require 'docking_station.rb'
-require 'bike.rb'
 
 describe DockingStation do
 
@@ -72,7 +71,7 @@ end
       subject.dock_bike(bike)
       bike1 = double(:bike, :condition => false)
       subject.dock_bike(bike1)
-      expect(subject.get_broken_bikes).to eq bike1
+      expect(subject.get_broken_bikes).to eq [bike1]
     end
 
   end
